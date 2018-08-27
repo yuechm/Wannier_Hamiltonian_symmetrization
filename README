@@ -11,7 +11,7 @@ rotation matrix of s, p, d, f or t2g orbitals under rotations. Finally, the spac
 Group symmetry is restored by forcing symmetrization{Eq.(5) in arxiv:1805.12148)}.
 
 !!!
-HOWEVER, the tools only works well when your Hamiltonian respects the symmetry 
+HOWEVER, my tool only works well when your Hamiltonian respects the symmetry 
 to 80% degree, maybe. If not the case, the results will give you a wrong dispersion.
 !!!
 
