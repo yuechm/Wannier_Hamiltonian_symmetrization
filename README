@@ -34,7 +34,7 @@ before running the examples and your own cases.
 -------------------------------------------------------------------------------------
 
 Examples:
-./eg_spinfull_TaAs: symmetrization of spinfull TiB2
+./eg_spinfull_TaAs: symmetrization of spinfull TaAs
 
 To Run your own case:
 Copy wannier90_hr.dat to your new directory. Copy wann.in poscar.in and locaxis.in from eg_*/ also
