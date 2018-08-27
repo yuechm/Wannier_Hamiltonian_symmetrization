@@ -82,8 +82,6 @@ in your wannier90_hr.dat.
 You can adjust the orbitals sequence of wannier90_hr.dat to the form in which my program supports first
 and then do the symmetrization.
 
-If you have problems, do not hesitate to contact me! 
-
 Enjoy!
 
 if you do maximum localization, please make sure your orbitals still resemble the symmetry of corresponding
