@@ -1,6 +1,10 @@
 Copyright: Changming Yue, Institute of Physics, Chinese Academy of Sciences.
 Email:     yuechangming8@gmail.com
 
+This codes is also a toolkit integrated to WannierTools developed by Quansheng Wu.
+https://github.com/quanshengwu/wannier_tools/tree/master/wannhr_symm
+
+
 A tool for symmetrization of non-magnetic wannier90_hr.dat. 
 
 Generally there are some violations to symmetry of wannier Hamiltonian due to 
