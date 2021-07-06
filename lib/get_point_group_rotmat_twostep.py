@@ -10,6 +10,8 @@ from math import sqrt, cos, sin
 from get_orb_rotmat_twostep import get_any_rot_orb_twostep
 import rotate as rot_spin
 from get_euler_angle import *
+from dets_rot import rot_glb_dets
+import os
 
 np.set_printoptions(precision=10,linewidth=200)
 
@@ -78,6 +80,8 @@ def get_rotation_matrix_in_wannorbs(myposwan, nsymm, nptrans, symop, wann_atom_r
     protmat=np.zeros((norbs,norbs,nptrans,nsymm),dtype=np.complex128)
     dmat   =np.zeros((2,2,nsymm),dtype=np.complex128)
     for isymm in range(nsymm):
+        if os.path.exists("write_symmop.flag"): f2 = open('Representation_Matrix_symop_'+str(isymm+1)+'.dat', 'w')
+	if os.path.exists("write_symmop.flag"): f3 = open('dmat_symop_'+str(isymm+1)+'.dat', 'w')
         print >>f, "============================================symm i=",isymm+1
         rot = symop[isymm][0]
         print >>f, "rot(Bravis)\n", rot
@@ -111,6 +115,7 @@ def get_rotation_matrix_in_wannorbs(myposwan, nsymm, nptrans, symop, wann_atom_r
 	print >>f, "diffs\n", rgb - rot_glb
 
         print >>f, "det of rot_glb=",det(rot_glb)
+        rot_glb_dets.append(det(rot_glb))
     
     # get dmat
         if ispinor: 
@@ -202,5 +207,17 @@ def get_rotation_matrix_in_wannorbs(myposwan, nsymm, nptrans, symop, wann_atom_r
             #    for j in range(norbs):
             #        if (abs(protmat[j,i,isymm])>1.0E-8): print "{:6d}{:6d}{:12.8f}{:12.8f}".format(j+1, i+1, protmat[j,i,isymm].real, protmat[j,i,isymm].imag)
             print >>f, "+++++++++++++++++++++++++++++++++++++++++++++++++"    
+        for i1 in range(2):
+            for i2 in range(2):
+	        line="{:8d}{:8d}{:24.14f}{:24.14f}".format(i1,i2,dmat[i1,i2,isymm].real, dmat[i1,i2,isymm].imag) 
+		if os.path.exists("write_symmop.flag"): print >>f3, line
+        for i1 in range(nband):
+            for i2 in range(nband):
+		if abs(prottmp[i1,i2,iptr,isymm])>1.0E-6:
+ 	            line="{:8d}{:8d}{:24.14f}{:24.14f}".format(i1,i2,prottmp[i1,i2,iptr,isymm].real, prottmp[i1,i2,iptr,isymm].imag)
+  		    if os.path.exists("write_symmop.flag"): print >>f2, line
+        if os.path.exists("write_symmop.flag"): f2.close()
+        if os.path.exists("write_symmop.flag"): f3.close()
+        
     f.close() 
     return nors, offs, vec_shift, protmat
